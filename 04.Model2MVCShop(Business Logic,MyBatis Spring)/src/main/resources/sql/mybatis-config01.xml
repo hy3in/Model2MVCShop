@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+ 		 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ 		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+  						
+<!--	
+	1. properties 파일관리
+	- 애플리케이션 배포시 공통부분, 각 환경별 다른 값들은 properties 파일에 
+	독립적으로 관리 할 수 있다
+	- DBMS 접속 정보를 갖는 properties 파일 참조
+	- properties 파일에 저장된 name = value 는 ${name}표현으로 접근 가능
+-->	  						
+
+<configuration>
+	<properties resource="config/jdbc.properties"/>
+	<settings>
+		<setting name="callSettersOnNulls" value="false"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="product" type="com.model2.mvc.service.domain.Product"/>
+	</typeAliases>
+	
+  <environments default="development">
+  
+    <environment id="development">
+      <!-- Transaction Definition -->
+      <transactionManager type="JDBC"/>
+ 	   <!-- javax.sql.DataSource Definition 
+ 	   		MyBatis는 자주사용되는 DataType은 내장된 Alias를 정의해 두고 있다.-->      
+      <dataSource type="POOLED">
+        <property name="driver"  value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username"  value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+      </dataSource>
+    </environment>
+    
+  </environments>
+
+  <!-- SQL Definition :: file include -->
+  <mappers>
+    <mapper resource="sql/ProductMapper.xml"/>
+  </mappers>
+
+</configuration>
