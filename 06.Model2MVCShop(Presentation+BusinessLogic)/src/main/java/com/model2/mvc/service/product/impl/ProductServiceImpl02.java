@@ -37,6 +37,8 @@ public class ProductServiceImpl02 implements ProductService{
 	@Override
 	public Map<String , Object> getProductList(Search search) throws Exception {
 		List<Product> list = productDao.getProductList(search);
+		System.out.println("@@@@@@@"+list);
+		
 		int totalCount = productDao.getTotalCount(search);
 		
 		Map<String,Object> map = new HashMap<String,Object>();

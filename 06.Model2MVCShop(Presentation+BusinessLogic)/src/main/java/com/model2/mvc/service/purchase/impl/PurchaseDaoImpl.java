@@ -33,8 +33,8 @@ public class PurchaseDaoImpl implements PurchaseDao{
 	}
 
 	@Override
-	public Purchase findPurchase(String name) {
-		return sqlSession.selectOne("PurchaseMapper.getPurchase",name);
+	public Purchase findPurchase(int tranNo) {
+		return sqlSession.selectOne("PurchaseMapper.getPurchase",tranNo);
 	}
 	
 	

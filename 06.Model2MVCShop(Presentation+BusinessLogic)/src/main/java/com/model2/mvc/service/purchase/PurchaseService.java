@@ -10,7 +10,7 @@ public interface PurchaseService {
 	
 	public void InsertPurchase(Purchase purchase);
 	
-	public Purchase findPurchase(String name);
+	public Purchase findPurchase(int tranNo);
 	
 	public Purchase findPurchase2(int ProdNo);
 	

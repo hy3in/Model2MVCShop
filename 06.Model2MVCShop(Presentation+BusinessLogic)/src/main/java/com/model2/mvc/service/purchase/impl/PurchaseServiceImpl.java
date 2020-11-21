@@ -37,8 +37,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public Purchase findPurchase(String name) {
-		return purchaseDao.findPurchase(name);
+	public Purchase findPurchase(int tranNo) {
+		return purchaseDao.findPurchase(tranNo);
 	}
 
 	@Override

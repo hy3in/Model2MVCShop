@@ -43,7 +43,7 @@
 		SELECT 
 		tran_no, prod_no, buyer_id, payment_option, receiver_name, receiver_phone, demailaddr, dlvy_request, tran_status_code, order_data, dlvy_date  
 		FROM transaction 
-		WHERE receiver_name = #{value}
+		WHERE tran_no = #{value}
 	</select>
 	
 	<select 	id="getPurchase2"	parameterType="string"	resultMap="purchaseSelectMap">
@@ -62,7 +62,7 @@
 			demailaddr			=	#{divyAddr} ,
 			dlvy_request		=	#{divyRequest},
 	   	</set>
-	   	WHERE prod_no = #{purchaseProd.prodNo}
+	   	WHERE tran_no = #{tranNo}
 	 </update>
 	 
 	 <update	id="updateTranCode"	parameterType="purchase" >

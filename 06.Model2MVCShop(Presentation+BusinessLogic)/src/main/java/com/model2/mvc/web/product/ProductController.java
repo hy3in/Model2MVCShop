@@ -65,7 +65,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/getProduct.do")
-	public String getProduct(HttpServletResponse response, HttpServletRequest request, @RequestParam("prodNo") int prodNo, Model model)throws Exception{
+	public String getProduct(HttpSession session, HttpServletResponse response, HttpServletRequest request, @RequestParam("prodNo") int prodNo, Model model)throws Exception{
 		System.out.println("/getProduct.do");
 		
 		//최근본상품..
@@ -84,8 +84,8 @@ public class ProductController {
 		
 		Product product = productService.findProduct(prodNo);
 		model.addAttribute("product",product);
+		session.setAttribute("product", product);
 		
-		HttpSession session=request.getSession();
 		String authorization = (String)session.getAttribute("menuType");
 		if(authorization.equals("manage")) {
 			return "forward:/product/UpdateProduct.jsp";
@@ -100,8 +100,6 @@ public class ProductController {
 		HttpSession session = request.getSession();
 		String authorization = "";
 		
-		System.out.println("@@@@@@menu : "+menu);
-		System.out.println(search.getCurrentPage()+"@@@currentpage");
 		if(search.getCurrentPage() != 0 ){
 			if(menu==null) {
 				session.getAttribute("menuType");

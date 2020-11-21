@@ -15,6 +15,7 @@
 		<result property="prodName" 				column="prod_name" 					jdbcType="VARCHAR" />
 		<result property="prodNo" 				column="prod_no" 					jdbcType="NUMERIC" />
 		<result property="regDate" 			column="reg_date" 		jdbcType="DATE" />
+		<result property="proTranCode" column="tran_status_code" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<!-- INSERT -->
@@ -34,7 +35,7 @@
    <select  id="getProductList"  parameterType="com.model2.mvc.common.Search"	resultMap="productSelectMap">
 	  	SELECT *
 		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-			FROM(	SELECT p.*, t.tran_status_code 코드
+			FROM(	SELECT p.*, t.tran_status_code
 				FROM product p, transaction t 
 				WHERE p.prod_no = t.prod_no(+)
 				<if test="searchCondition != null">

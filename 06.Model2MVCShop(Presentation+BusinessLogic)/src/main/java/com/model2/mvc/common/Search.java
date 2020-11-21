@@ -1,6 +1,5 @@
 package com.model2.mvc.common;
 
-import java.util.ArrayList;
 
 //==>리스트화면을 모델링(추상화/캡슐화)한 Bean 
 public class Search {
@@ -16,11 +15,8 @@ public class Search {
 	//==> 참조
 	private int endRowNum;
 	private int startRowNum;
-	private ArrayList<Integer> prodNo;
-	private String[] prodName;
 	private int sort;
 	
-
 	///Constructor
 	public Search() {
 	}
@@ -54,22 +50,6 @@ public class Search {
 		this.searchKeyword = searchKeyword;
 	}
 	
-	public ArrayList<Integer> getProdNo() {
-		return prodNo;
-	}
-
-	public void setProdNo(ArrayList<Integer> prodNo) {
-		this.prodNo = prodNo;
-	}
-	
-	public String[] getProdName() {
-		return prodName;
-	}
-
-	public void setProdName(String[] prodName) {
-		this.prodName = prodName;
-	}
-
 	//==> Select Query 시 ROWNUM 마지막 값 
 	public int getEndRowNum() {
 		return getCurrentPage()*getPageSize();
@@ -78,6 +58,8 @@ public class Search {
 	public int getStartRowNum() {
 		return (getCurrentPage()-1)*getPageSize()+1;
 	}
+
+	
 	
 	public int getSort() {
 		return sort;

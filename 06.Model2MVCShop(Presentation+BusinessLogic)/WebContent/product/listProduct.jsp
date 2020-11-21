@@ -118,8 +118,8 @@ function fncGetUserList(currentPage){
 			</c:if>
 			<c:if test = "${menuType eq 'search'}">
 				<a href="/getProduct.do?prodNo=${product.prodNo}" >
-			</c:if>${product.prodName}</a>
-		</c:if>
+			</c:if>
+		</c:if>${product.prodName}</a>
 		
 		</td>
 		<td></td>
@@ -136,7 +136,7 @@ function fncGetUserList(currentPage){
 			<c:when test = "${product.proTranCode eq '1  '}">
 				구매완료
 				<c:if test = "${user.role eq 'admin'}">
-					<a href="/updateTranCodeByProd.do?prodNo=${vo.prodNo}&tranCode=2">배송하기</a>
+					<a href="/updateTranCodeByProd.do?prodNo=${product.prodNo}&tranCode=2">배송하기</a>
 				</c:if>
 			</c:when>
 			<c:when test = "${product.proTranCode eq '2  '}">
