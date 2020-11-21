@@ -44,11 +44,7 @@ public class GetProductAction extends Action{
 		
 		
 		HttpSession session=request.getSession();
-		session.setAttribute("product", vo);
-		
-		System.out.println(session.getAttribute("product"));	
-		System.out.println(vo.getProTranCode());		
-		
+		session.setAttribute("product", vo);				
 		
 		String authorization = (String)session.getAttribute("menuType");
 		System.out.println(authorization);

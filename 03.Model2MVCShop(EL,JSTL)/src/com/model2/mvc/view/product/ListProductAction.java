@@ -64,13 +64,11 @@ public class ListProductAction extends Action{
 		
 		Page resultPage	= 
 				new Page( currentPage, ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		System.out.println("ListUserAction ::"+resultPage);
 
 		// Model 과 View 연결
 		request.setAttribute("list", map.get("list"));
 		request.setAttribute("resultPage", resultPage);
 		request.setAttribute("search", search);
-		System.out.println("listProductAction 끝2==========");
 		
 		return "forward:/product/listProduct.jsp";		
 	}
