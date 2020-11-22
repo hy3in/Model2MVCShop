@@ -20,6 +20,7 @@ public class User {
 	private String phone1;
 	private String phone2;
 	private String phone3;
+	private String grade;
 
 	
 	
@@ -98,10 +99,19 @@ public class User {
 	public String getPhone3() {
 		return phone3;
 	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 
 	@Override
 	public String toString() {
-		return "UserVO : [userId] "+userId+" [userName] "+userName+" [password] "+password+" [role] "+ role
-			+" [ssn] "+ssn+" [phone] "+phone+" [email] "+email+" [regDate] "+regDate;
+		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", role=" + role
+				+ ", ssn=" + ssn + ", phone=" + phone + ", addr=" + addr + ", email=" + email + ", regDate=" + regDate
+				+ ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", grade=" + grade + "]";
 	}
+
+	
 }

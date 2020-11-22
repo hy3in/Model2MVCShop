@@ -63,4 +63,15 @@ public class UserServiceImpl implements UserService{
 		}
 		return result;
 	}
+
+	@Override
+	public int getTotalPrice(String userId) throws Exception {
+		int totalPrice = userDao.getTotalPrice(userId);
+		return totalPrice;
+	}
+
+	@Override
+	public void InsertGrade(String userId, int grade) throws Exception {
+		userDao.InsertGrade(userId, grade);
+	}
 }

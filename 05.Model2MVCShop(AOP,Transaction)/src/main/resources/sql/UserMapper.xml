@@ -17,7 +17,7 @@
 		<result property="addr" 				column="addr" 					jdbcType="VARCHAR" />
 		<result property="email" 			column="email" 				jdbcType="NUMERIC"  />
 		<result property="regDate" 		column="reg_date" 			jdbcType="DATE" />
-		<result property="grade" 		column="grade" 			jdbcType="DATE" />
+		<result property="grade" 		column="grade" 			jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
@@ -31,7 +31,7 @@
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getUser"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
-		user_id , user_name , password , role ,  cell_phone ,  addr , email , reg_date 		
+		user_id , user_name , password , role ,  cell_phone ,  addr , email , reg_date, grade		
 		FROM users 
 		WHERE user_id = #{value}
 	 </select>

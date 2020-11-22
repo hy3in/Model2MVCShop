@@ -59,7 +59,6 @@ public class UserController {
 		System.out.println("/addUser.do");
 		//Business Logic
 		userService.addUser(user);
-		
 		return "redirect:/user/loginView.jsp";
 	}
 	
@@ -71,6 +70,7 @@ public class UserController {
 		User user = userService.getUser(userId);
 		// Model °ú View ¿¬°á
 		model.addAttribute("user", user);
+		System.out.println("@@@@@@"+user);
 		
 		return "forward:/user/getUser.jsp";
 	}
@@ -169,5 +169,23 @@ public class UserController {
 		model.addAttribute("search", search);
 		
 		return "forward:/user/listUser.jsp";
+	}
+	
+	@RequestMapping("/insertGrade.do")
+	public String InsertGrade(@RequestParam("userId")String userId, Model model)throws Exception{
+		System.out.println("/insertGrade start...");
+		
+		int totalPrice = 0;
+		totalPrice = userService.getTotalPrice(userId);
+		
+		if(totalPrice<10000) {
+			 userService.InsertGrade(userId, 1);
+		 }else if(totalPrice>=10000 && totalPrice<200000) {
+			 userService.InsertGrade(userId, 2);
+		 }else {
+			 userService.InsertGrade(userId, 3);
+		 }
+		
+		return "redirect:/getUser.do?userId="+userId;
 	}
 }

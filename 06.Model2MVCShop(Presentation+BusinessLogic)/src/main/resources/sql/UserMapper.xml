@@ -17,6 +17,7 @@
 		<result property="addr" 				column="addr" 					jdbcType="VARCHAR" />
 		<result property="email" 			column="email" 				jdbcType="NUMERIC"  />
 		<result property="regDate" 		column="reg_date" 			jdbcType="DATE" />
+		<result property="grade" 		column="grade" 			jdbcType="DATE" />
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
@@ -30,7 +31,7 @@
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getUser"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
-		user_id , user_name , password , role ,  cell_phone ,  addr , email , reg_date 		
+		user_id , user_name , password , role ,  cell_phone ,  addr , email , reg_date, grade	
 		FROM users 
 		WHERE user_id = #{value}
 	 </select>
@@ -94,5 +95,22 @@
 							</where>
 						</if> ) countTable						
 	 </select>
+	 
+	 <select id="getTotalPrice" parameterType="string" resultType="int" >
+	 	SELECT
+		SUM(p.price)
+		FROM transaction t, users u, product p
+		WHERE t.buyer_id = u.user_id
+		AND t.prod_no = p.prod_no
+		AND u.user_id= #{value}
+	 </select>
+	 
+	 <update	id="insertGrade"	parameterType="arraylist" >
+	   	UPDATE users
+	   	<set>
+	   		grade = #{list[1]}
+	   	</set>
+	   	WHERE user_id = #{list[0]}
+	 </update>
 	 
 </mapper>
