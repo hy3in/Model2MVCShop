@@ -178,6 +178,8 @@ public class UserController {
 		int totalPrice = 0;
 		totalPrice = userService.getTotalPrice(userId);
 		
+		 userService.InsertGrade(userId, totalPrice);
+		
 		if(totalPrice<10000) {
 			 userService.InsertGrade(userId, 1);
 		 }else if(totalPrice>=10000 && totalPrice<200000) {

@@ -128,7 +128,7 @@ public class ProductController {
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
-		
+		System.out.println("Search==="+search);
 		// Model °ú View ¿¬°á
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("resultPage", resultPage);

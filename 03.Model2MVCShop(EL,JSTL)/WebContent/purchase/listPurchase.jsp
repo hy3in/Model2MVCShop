@@ -70,16 +70,24 @@
 		
 			<c:set var="i" value="${i+1}"/>
 			<tr class="ct_list_pop">
+			
 				<td align="center">
 				<a href="/getPurchase.do?tranNo=${purchase.tranNo}">${i}</a>
 				</td>
 				<td></td>
+				
 				<td align="left">
 					<a href="/getUser.do?userId=${purchase.buyer.userId}">${purchase.buyer.userId}</a>
 				</td>
 				<td></td>
-				<td align="left">
 				
+				<td align="left">${user.userName}</td>
+				<td></td>
+				
+				<td align="left">${user.phone}</td>
+				<td></td>
+				
+				<td align="left">
 				<c:if test = "${purchase.tranCode eq '1  '}">
 					현재 구매완료 상태입니다
 				</c:if>
@@ -88,8 +96,7 @@
 				</c:if>
 				<c:if test = "${purchase.tranCode eq '3  '}">
 					배송완료
-				</c:if>
-				
+				</c:if>	
 				</td>		
 		</tr>
 		<tr>

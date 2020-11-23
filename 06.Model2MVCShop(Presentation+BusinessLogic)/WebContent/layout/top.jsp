@@ -33,6 +33,7 @@
 	          <td width="56">
 		          <c:if test="${ ! empty user }">
 		            	<a href="/logout.do" target="_parent">logout</a>  
+		            	<a href="/listCart.do" target="_parent">찜목록보기</a>
 		           </c:if>
 	          </td>
 	        </tr>

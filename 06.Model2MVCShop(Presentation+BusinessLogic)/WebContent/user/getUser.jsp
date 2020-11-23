@@ -100,7 +100,7 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 		<c:choose>
-			<c:when test="${user.grade == null}">
+			<c:when test="${user.grade eq '0'}">
 			등급갱신버튼을 누르세요
 			</c:when>
 			<c:when test="${user.grade eq '1'}">

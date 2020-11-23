@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="CartMapper">
+
+	<resultMap id="cartSelectMap" type="cart" >
+		<result property="cartNo" column="cart_no" jdbcType="VARCHAR"/>
+		<result property="userId" column="userid" jdbcType="VARCHAR"/>
+		<result property="product.prodNo" column="product_no" jdbcType="VARCHAR"/>
+		<result property="product.prodName" column="prod_name" jdbcType="VARCHAR"/>
+		<result property="product.price" column="price" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+		
+	<insert id="addCart" parameterType="arraylist">
+		INSERT
+		INTO cart
+		values(
+			seq_cart_cart_no.NEXTVAL,
+			#{list[0]},
+			#{list[1]}
+		)
+	</insert>
+	
+	<select id="getCartlist" parameterType="arraylist"	resultMap="cartSelectMap">
+		SELECT *
+		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+			FROM(	SELECT c.*, p.prod_name, p.price
+					FROM cart c, product p 
+					WHERE c.userid = #{list[1]}
+					AND c.product_no = p.prod_no}
+					) inner_table
+			WHERE ROWNUM &lt;= #{list[0].endRowNum} )
+		WHERE row_seq BETWEEN #{list[0].startRowNum} AND #{list[0].endRowNum}
+	</select>
+	
+	<select  id="getTotalCount"  parameterType="arraylist"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT * 
+				FROM transaction 
+				WHERE buyer_id = #{list[1]} ) countTable						
+	 </select>
+
+</mapper>

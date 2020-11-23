@@ -72,6 +72,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void InsertGrade(String userId, int grade) throws Exception {
-		userDao.InsertGrade(userId, grade);
+		
+		if(grade<10000) {
+			userDao.InsertGrade(userId, 1);
+		 }else if(grade>=10000 && grade<200000) {
+			 userDao.InsertGrade(userId, 2);
+		 }else {
+			 userDao.InsertGrade(userId, 3);
+		 }
 	}
 }

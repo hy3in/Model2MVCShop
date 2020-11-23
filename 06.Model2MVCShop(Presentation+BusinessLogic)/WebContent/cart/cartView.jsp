@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>구매 목록조회</title>
+<title>장바구니 목록조회</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
@@ -31,7 +31,7 @@
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">구매 목록조회</td>
+					<td width="93%" class="ct_ttl01">장바구니 목록조회</td>
 				</tr>
 			</table>
 		</td>
@@ -46,15 +46,12 @@
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">회원ID</td>
+		<td class="ct_list_b" width="150">물품번호</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">회원명</td>
+		<td class="ct_list_b" width="150">물품명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">전화번호</td>
+		<td class="ct_list_b">가격</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">배송현황</td>
-		<td class="ct_line02"></td>
-		<td class="ct_list_b">정보수정</td>
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
@@ -71,33 +68,19 @@
 			<c:set var="i" value="${i+1}"/>
 			<tr class="ct_list_pop">
 				<td align="center">
-				<a href="/getPurchase.do?tranNo=${purchase.tranNo}">${i}</a>
+					${i}</a>
 				</td>
 				<td></td>
 				<td align="left">
-					<a href="/getUser.do?userId=${purchase.buyer.userId}">${purchase.buyer.userId}</a>
+					${cart.product.prodNo}</a>
 				</td>
 				<td></td>
-				
-				<td align="left">${user.userName}</td>
-				<td></td>
-				
-				<td align="left">${user.phone}</td>
-				<td></td>
-				
 				<td align="left">
-				
-				<c:if test = "${purchase.tranCode eq '1  '}">
-					현재 구매완료 상태입니다
-				</c:if>
-				<c:if test = "${purchase.tranCode eq '2  '}">
-					현재 배송중 상태입니다<a href="/updateTranCode.do?prodNo=${purchase.purchaseProd.prodNo }&tranCode=3">배송완료</a>
-				</c:if>
-				<c:if test = "${purchase.tranCode eq '3  '}">
-					배송완료
-				</c:if>
-				
-				</td>		
+					${cart.product.prodName}</a>
+				</td>
+				<td align="left">
+					${cart.product.price}</a>
+				</td>	
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>

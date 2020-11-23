@@ -131,7 +131,7 @@ function fncGetUserList(currentPage){
 
 		<c:choose>
 			<c:when test = "${product.proTranCode == null}">
-				판매중
+				판매중  <a href="/addCart.do?prodNo=${product.prodNo}">담기</a>
 			</c:when>
 			<c:when test = "${product.proTranCode eq '1  '}">
 				구매완료

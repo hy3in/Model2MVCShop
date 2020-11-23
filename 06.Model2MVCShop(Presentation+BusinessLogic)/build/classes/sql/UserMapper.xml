@@ -98,7 +98,7 @@
 	 
 	 <select id="getTotalPrice" parameterType="string" resultType="int" >
 	 	SELECT
-		SUM(p.price)
+		NVL(SUM(p.price),0)
 		FROM transaction t, users u, product p
 		WHERE t.buyer_id = u.user_id
 		AND t.prod_no = p.prod_no
