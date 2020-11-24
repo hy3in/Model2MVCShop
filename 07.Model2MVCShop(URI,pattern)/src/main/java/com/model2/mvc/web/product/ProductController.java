@@ -1,10 +1,13 @@
 package com.model2.mvc.web.product;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -58,6 +63,19 @@ public class ProductController {
 	public String addProduct(@ModelAttribute("product") Product product, Model model )throws Exception{
 		
 		System.out.println("/addProduct POST");
+		
+		String temDir = "C:\\Users\\hy3in\\git\\Model2MVCShop\\07.Model2MVCShop(URI,pattern)\\WebContent\\images\\uploadFiles\\";
+		
+		MultipartFile uploadfile = product.getUploadFile();
+		if(uploadfile !=null) {
+			String fileName = uploadfile.getOriginalFilename();
+			product.setFileName(fileName);
+			System.out.println("file Name ===="+fileName);
+			File file = new File(temDir+fileName);
+			uploadfile.transferTo(file);
+		}else {
+			product.setFileName(null);
+		}
 		//Business Logic
 		productService.InsertProduct(product);
 		
