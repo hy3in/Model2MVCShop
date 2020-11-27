@@ -9,6 +9,7 @@ DROP SEQUENCE seq_transaction_tran_no;
 
 CREATE SEQUENCE seq_product_prod_no		 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_transaction_tran_no	INCREMENT BY 1 START WITH 10000;
+CREATE SEQUENCE seq_fileupload_file_no		 	INCREMENT BY 1 START WITH 10000;
 
 
 CREATE TABLE users ( 
@@ -50,6 +51,13 @@ CREATE TABLE transaction (
 	dlvy_date 				DATE,
 	PRIMARY KEY(tran_no)
 );
+
+CREATE TABLE fileupload(
+	file_no NUMBER,
+	prod_no NUMBER NOT NULL REFERENCES product(prod_no),
+	fileName VARCHAR2(100),
+	PRIMARY KEY(file_no)
+)
 
 
 INSERT 

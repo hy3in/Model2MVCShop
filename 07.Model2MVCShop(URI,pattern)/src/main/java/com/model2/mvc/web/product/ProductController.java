@@ -70,7 +70,6 @@ public class ProductController {
 		if(uploadfile !=null) {
 			String fileName = uploadfile.getOriginalFilename();
 			product.setFileName(fileName);
-			System.out.println("file Name ===="+fileName);
 			File file = new File(temDir+fileName);
 			uploadfile.transferTo(file);
 		}else {
