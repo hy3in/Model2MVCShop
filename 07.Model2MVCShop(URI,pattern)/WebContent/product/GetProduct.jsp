@@ -67,7 +67,7 @@
 			상품이미지 <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${vo.fileName}</td>
+		<td class="ct_write01">${vo.fileList[0]}${vo.fileList[1] }</td>
 			<img src = "/images/uploadFiles/../../images/empty.GIF"/>
 		</td>
 	</tr>

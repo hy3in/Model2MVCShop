@@ -1,12 +1,14 @@
 package com.model2.mvc.service.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 
 public class Product {
 	
+	private String[] fileList;
 	private String fileName;
 	private String manuDate;
 	private int price;
@@ -15,11 +17,21 @@ public class Product {
 	private int prodNo;
 	private Date regDate;
 	private String proTranCode;
-	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFile;
 	
 	public Product(){
 	}
 	
+	
+	
+	public String[] getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(String[] fileList) {
+		this.fileList = fileList;
+	}
+
 	public String getProTranCode() {
 		return proTranCode;
 	}
@@ -70,11 +82,11 @@ public class Product {
 	}
 	
 
-	public MultipartFile getUploadFile() {
+	public MultipartFile[] getUploadFile() {
 		return uploadFile;
 	}
 
-	public void setUploadFile(MultipartFile uploadFile) {
+	public void setUploadFile(MultipartFile[] uploadFile) {
 		this.uploadFile = uploadFile;
 	}
 

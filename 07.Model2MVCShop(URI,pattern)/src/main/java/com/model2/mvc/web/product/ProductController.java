@@ -4,8 +4,10 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -66,15 +68,24 @@ public class ProductController {
 		
 		String temDir = "C:\\Users\\hy3in\\git\\Model2MVCShop\\07.Model2MVCShop(URI,pattern)\\WebContent\\images\\uploadFiles\\";
 		
-		MultipartFile uploadfile = product.getUploadFile();
+		MultipartFile[] uploadfile = product.getUploadFile();
+		String fileName2 = "";
+		
 		if(uploadfile !=null) {
-			String fileName = uploadfile.getOriginalFilename();
-			product.setFileName(fileName);
-			File file = new File(temDir+fileName);
-			uploadfile.transferTo(file);
+			for(MultipartFile uploadfile1 : uploadfile) {
+				
+				String fileName = uploadfile1.getOriginalFilename();
+				fileName2 = fileName2.concat("/"+uploadfile1.getOriginalFilename());
+				System.out.println(fileName2+"append@");
+				product.setFileName(fileName2);
+				File file = new File(temDir+fileName);
+				uploadfile1.transferTo(file);
+			}
 		}else {
 			product.setFileName(null);
 		}
+		
+		
 		//Business Logic
 		productService.InsertProduct(product);
 		
@@ -101,7 +112,14 @@ public class ProductController {
 		cookie.setMaxAge(60*1);
 		response.addCookie(cookie);
 		
+		
 		Product product = productService.findProduct(prodNo);
+		
+		String[] str = product.getFileName().split("/");
+		product.setFileList(str);
+		
+		System.out.println("@@@@"+str[0]);
+		
 		model.addAttribute("product",product);
 		session.setAttribute("product", product);
 		
