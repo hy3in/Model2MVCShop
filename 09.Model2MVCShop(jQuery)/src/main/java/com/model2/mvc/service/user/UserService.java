@@ -24,4 +24,9 @@ public interface UserService {
 	// 회원 ID 중복 확인
 	public boolean checkDuplication(String userId) throws Exception;
 	
+	//총 구매 금액확인
+	public int getTotalPrice(String userId) throws Exception;
+	
+	public void InsertGrade(String userId, int grade) throws Exception;
+	
 }

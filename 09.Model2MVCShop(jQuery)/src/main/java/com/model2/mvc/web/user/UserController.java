@@ -75,19 +75,6 @@ public class UserController {
 		return "forward:/user/getUser.jsp";
 	}
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping( value="getJsonUser/{userId}", method=RequestMethod.GET )
-	public void getJsonUser(	@PathVariable String userId, 
-									 			Model model) throws Exception{
-		
-		System.out.println("/getJsonUser/getUser : GET");
-		//Business Logic
-		User user = userService.getUser(userId);
-		// Model °ú View ¿¬°á
-		model.addAttribute("user", user);
-	}
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 
 	@RequestMapping( value="updateUser", method=RequestMethod.GET )
 	public String updateUser( @RequestParam("userId") String userId , Model model ) throws Exception{
@@ -138,26 +125,7 @@ public class UserController {
 		
 		return "redirect:/index.jsp";
 	}
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping( value="jsonLogin", method=RequestMethod.POST )
-	public void jsonLogin(	@RequestBody User user,
-												HttpSession session,
-												Model model) throws Exception{
-	
-		System.out.println("/user/jsonLogin : POST");
-		//Business Logic
-		System.out.println("::"+user);
-		User dbUser=userService.getUser(user.getUserId());
 		
-		if( user.getPassword().equals(dbUser.getPassword())){
-			session.setAttribute("user", dbUser);
-		}
-		
-		model.addAttribute("user", dbUser);
-	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 	
 	@RequestMapping( value="logout", method=RequestMethod.GET )
 	public String logout(HttpSession session ) throws Exception{
@@ -206,5 +174,17 @@ public class UserController {
 		model.addAttribute("search", search);
 		
 		return "forward:/user/listUser.jsp";
+	}
+	
+	@RequestMapping("/insertGrade")
+	public String InsertGrade(@RequestParam("userId")String userId, Model model)throws Exception{
+		System.out.println("/insertGrade start...");
+		
+		int totalPrice = 0;
+		totalPrice = userService.getTotalPrice(userId);
+		
+		 userService.InsertGrade(userId, totalPrice);
+		
+		return "redirect:/user/getUser?userId="+userId;
 	}
 }
