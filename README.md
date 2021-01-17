@@ -4,7 +4,7 @@
 
 ## 사용기술 및 개발환경
 JAVA,
-HTML, CSS, JavaScript,
+HTML, CSS, JavaScript, JQuery
 SpringMVC, MyBatis,
 OracleSQL,
 Apache Tomcat, GIThub
